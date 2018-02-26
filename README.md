@@ -26,7 +26,6 @@ The default Udacity parameters provided reasonable results and I noticed no subs
  <p style="text-align: center;"> Noisy region on distant road surface </p> 
  </figcaption>
 </figure>
-<br>
 <figure>
  <img src="test_images_output/udacity_325_poly.png" width="380" alt="Masked Image" />
  <figcaption>
@@ -36,8 +35,8 @@ The default Udacity parameters provided reasonable results and I noticed no subs
 </figure>
 
 The second function I modified,`draw_lines`, takes as input the set of lines produced by the Hough Transformation and draws on the original image a pair of lines estimating the right and left lane line.  My implementation of `draw_lines` relies on three ideas:
-* left and right lane lanes can be expected to only occur in certain regions of the image.  Left and right regions can be treated separately.  Regions are `matplotlib.Path` objects.  A Hough transformation line is determined to fall in the region if it's first point returns true and the first point of each line is tested with the `matplotlib.Path`s `contains_point` function 
-* the slopes of lane line estimates can be expected to fall within a certain range.  This range of slopes is mirrored for the left and right lanes.
+* Left and right lane lanes can be expected to only occur in certain regions of the image.  Left and right regions can be treated separately.  Regions are `matplotlib.Path` objects.  A Hough transformation line is determined to fall in the region if it's first point returns true and the first point of each line is tested with the `matplotlib.Path`s `contains_point` function 
+* The slopes of lane line estimates can be expected to fall within a certain range.  This range of slopes is mirrored for the left and right lanes.
 * The line representing the estimated location of the lane lines is an average of lines that meet the above two criteria.  Further, longer Hough lines are probably better indicators of lane location, often occurring in the foreground at higher resolution, so the average is weighted by the squared norm of input lines.  
 
 
